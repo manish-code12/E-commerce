@@ -3,41 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demo E-Commerce Store</title>
+  <title>ShopMart - Real E-Commerce</title>
   <link rel="stylesheet" href="style.css">
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <header>
-    <h1>🛍 Demo E-Commerce Store</h1>
-    <nav>
-      <input type="text" id="search" placeholder="Search products...">
-      <select id="category-filter">
-        <option value="all">All Categories</option>
-        <option value="Clothes">Clothes</option>
-        <option value="Accessories">Accessories</option>
-        <option value="Shoes">Shoes</option>
-      </select>
-      <div class="cart">
-        🛒 <span id="cart-count">0</span>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <h2>Shop<span>Mart</span></h2>
       </div>
-    </nav>
+      
+      <div class="search-bar">
+        <input type="text" id="search" placeholder="Search for products, brands and more...">
+        <button id="search-btn"><i class="fas fa-search"></i></button>
+      </div>
+
+      <div class="nav-links">
+        <button id="login-btn" class="login-btn">Login</button>
+        <div class="nav-item wishlist-icon" onclick="toggleWishlistModal()">
+          <i class="fas fa-heart"></i>
+          <span>Wishlist</span>
+          <span class="badge" id="wishlist-count">0</span>
+        </div>
+        <div class="nav-item cart-icon" onclick="toggleCartSidebar()">
+          <i class="fas fa-shopping-cart"></i>
+          <span>Cart</span>
+          <span class="badge" id="cart-count">0</span>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section class="products" id="products"></section>
+  <!-- Categories Bar -->
+  <nav class="categories-bar">
+    <ul id="category-filter">
+      <li class="active" data-category="all">All</li>
+      <li data-category="Electronics">Electronics</li>
+      <li data-category="Fashion">Fashion</li>
+      <li data-category="Footwear">Footwear</li>
+      <li data-category="Accessories">Accessories</li>
+    </ul>
+  </nav>
 
-    <aside class="cart-section">
-      <h2>Your Cart</h2>
-      <ul id="cart-items"></ul>
-      <p>Total: $<span id="total">0</span></p>
-      <button id="checkout">Checkout</button>
-    </aside>
+  <!-- Main Content -->
+  <main>
+    <div class="banner">
+      <div class="banner-content">
+        <h2>Big Billion Sale is Live!</h2>
+        <p>Get up to 80% off on top brands.</p>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <h3>Trending Products</h3>
+    </div>
+    
+    <section class="products" id="products">
+      <!-- Products will be injected here via JavaScript -->
+    </section>
   </main>
 
+  <!-- Cart Sidebar -->
+  <div class="overlay" id="cart-overlay" onclick="toggleCartSidebar()"></div>
+  <aside class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h2>My Cart</h2>
+      <button class="close-btn" onclick="toggleCartSidebar()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items-container" id="cart-items">
+      <!-- Cart items go here -->
+    </div>
+    <div class="cart-footer">
+      <div class="total">
+        <span>Total Amount:</span>
+        <span id="total-price">₹0</span>
+      </div>
+      <button class="checkout-btn" id="checkout-btn">Place Order</button>
+    </div>
+  </aside>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="login-modal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeLoginModal()"><i class="fas fa-times"></i></button>
+      <div class="modal-left">
+        <h2>Login</h2>
+        <p>Get access to your Orders, Wishlist and Recommendations</p>
+      </div>
+      <div class="modal-right">
+        <form id="login-form">
+          <div class="input-group">
+            <input type="text" required placeholder="Enter Email/Mobile number">
+          </div>
+          <div class="input-group">
+            <input type="password" required placeholder="Enter Password">
+          </div>
+          <button type="submit" class="auth-btn">Login</button>
+          <p class="signup-link">New to ShopMart? <a>Create an account</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
   <footer>
-    <p>⚠️ Demo site only. Products & prices are placeholders.</p>
+    <p>&copy; 2026 ShopMart. All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
